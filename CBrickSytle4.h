@@ -4,8 +4,8 @@
 #include "CBrick.h"
 
 /*
- *  ##
- *  ##
+ *  ***
+ *    *
  */
 
 class CBrickStyle4 : public CBrick

@@ -1,17 +1,22 @@
 #include "CInfoBoard.h"
 #include "CNextBrickBoard.h"
 #include "CMainGameArea.h"
+#include <stdio.h>
+#include "CBrickStyle2.h"
 
 int main()
 {
-	//CInfoBoard* board = new CInfoBoard(20, 10);
-	//board->drawInfoBoard(8, 6);
+	CBrickStyle2* style = new CBrickStyle2();
+	style->drawBrick();
 
-	//CNextBrickBoard* board = new CNextBrickBoard(20, 10);
-	//board->drawNextBrickBoard(6);
+	getchar();
+	style->rotate();
 
-	CMainGameArea* area = new CMainGameArea(20, 5);
-	area->drawGameArea();
+	getchar();
+	style->rotate();
+
+	getchar();
+	style->rotate();
 
 	return 0;
 }
