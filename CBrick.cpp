@@ -1,10 +1,11 @@
 #include "CBrick.h"
 
-CBrick::CBrick()
+CBrick::CBrick(CMainGameArea* gameArea)
 {
 	m_status = 0;
-	m_arrBrickUnit[1].m_x = 5;
-	m_arrBrickUnit[1].m_y = 3;
+	this->m_gameArea = gameArea;
+	this->m_arrBrickUnit[1].m_x = m_gameArea->getOffsetX() + KCOL / 2 + 1;
+	this->m_arrBrickUnit[1].m_y = m_gameArea->getOffsetY() + 1;
 }
 
 CBrick::~CBrick()

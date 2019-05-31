@@ -10,7 +10,7 @@
 class CBrickStyle2 : public CBrick
 {
 public:
-	CBrickStyle2();
+	CBrickStyle2(CMainGameArea* gameArea);
 
 	virtual bool rotate();
 

@@ -23,10 +23,10 @@
     <ClCompile Include="CBrickStyle1.cpp" />
     <ClCompile Include="CBrickStyle2.cpp" />
     <ClCompile Include="CBrickStyle3.cpp" />
+    <ClCompile Include="CBrickStyle4.cpp" />
     <ClCompile Include="CBrickStyle5.cpp" />
     <ClCompile Include="CBrickStyle6.cpp" />
     <ClCompile Include="CBrickStyle7.cpp" />
-    <ClCompile Include="CBrickSytle4.cpp" />
     <ClCompile Include="CBrickUnit.cpp" />
     <ClCompile Include="CInfoBoard.cpp" />
     <ClCompile Include="CMainGameArea.cpp" />
@@ -40,10 +40,10 @@
     <ClInclude Include="CBrickStyle1.h" />
     <ClInclude Include="CBrickStyle2.h" />
     <ClInclude Include="CBrickStyle3.h" />
+    <ClInclude Include="CBrickStyle4.h" />
     <ClInclude Include="CBrickStyle5.h" />
     <ClInclude Include="CBrickStyle6.h" />
     <ClInclude Include="CBrickStyle7.h" />
-    <ClInclude Include="CBrickSytle4.h" />
     <ClInclude Include="CBrickUnit.h" />
     <ClInclude Include="CInfoBoard.h" />
     <ClInclude Include="CMainGameArea.h" />

@@ -7,10 +7,14 @@
  *   **
  *  **
  */
-
 class CBrickStyle7 : public CBrick
 {
+public:
+	CBrickStyle7(CMainGameArea* gameArea);
 
+	virtual bool rotate();
+
+private:
 };
 
 #endif

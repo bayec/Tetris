@@ -2,13 +2,14 @@
 #define _CBRICK_H_
 
 #include "CBrickUnit.h"
+#include "CMainGameArea.h"
 
 #define KBRICK_UINT_COUNT 4
 
 class CBrick
 {
 public:
-	CBrick();
+	CBrick(CMainGameArea* gameArea);
 	virtual ~CBrick();
 	virtual bool rotate() = 0;
 	void eraseBrick();
@@ -17,9 +18,10 @@ public:
 	bool moveRight();
 	bool moveDown();
 
-public:
+protected:
 	CBrickUnit m_arrBrickUnit[KBRICK_UINT_COUNT];
 	int m_status;
+	CMainGameArea* m_gameArea;
 };
 
 #endif

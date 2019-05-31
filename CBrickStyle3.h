@@ -10,7 +10,12 @@
 
 class CBrickStyle3 : public CBrick
 {
+public:
+	CBrickStyle3(CMainGameArea* gameArea);
 
+	virtual bool rotate();
+
+private:
 };
 
 #endif

@@ -4,12 +4,17 @@
 #include "CMainGameArea.h"
 #include "CInfoBoard.h"
 #include "CNextBrickBoard.h"
+#include "CBrick.h"
 
 class CTetrisGame
 {
 public:
 	CTetrisGame();
 	void run();
+
+private:
+	void setGameArea();
+	CBrick* createNewBrick(int &brickIndex);
 
 private:
 	CMainGameArea* m_gameArea;
