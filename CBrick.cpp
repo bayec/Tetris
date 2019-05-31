@@ -59,6 +59,15 @@ bool CBrick::moveRight()
 
 bool CBrick::moveDown()
 {
+	for (int i = 0; i < KBRICK_UINT_COUNT; i++)
+	{
+		//纵向偏移量加上游戏区域的行数
+		if (this->m_arrBrickUnit[i].m_y + 1 >= this->m_gameArea->getOffsetY() + KROW)
+		{
+			return false;
+		}
+	}
+
 	//擦除原来的砖块
 	eraseBrick();
 
@@ -66,6 +75,7 @@ bool CBrick::moveDown()
 	{
 		m_arrBrickUnit[i].m_y++;
 	}
+	//绘制新砖块
 	drawBrick();
 
 	return true;

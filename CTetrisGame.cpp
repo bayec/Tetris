@@ -1,5 +1,6 @@
 #include <time.h>
 #include <stdlib.h>
+#include <Windows.h>
 #include "CTetrisGame.h"
 #include "CBrickStyle1.h"
 #include "CBrickStyle2.h"
@@ -12,7 +13,7 @@
 CTetrisGame::CTetrisGame()
 {
 	this->m_layerCount = 0;
-	this->m_speed = 500;
+	this->m_speed = 600;
 	this->m_level = 1;
 
 	this->setGameArea();
@@ -23,6 +24,14 @@ void CTetrisGame::run()
 	int brickIndex = 0;
 	CBrick* brick = createNewBrick(brickIndex);
 	brick->drawBrick();
+
+	while (true)
+	{
+		if (brick->moveDown())
+		{
+			Sleep(this->m_speed);
+		}
+	}
 }
 
 void CTetrisGame::setGameArea()
