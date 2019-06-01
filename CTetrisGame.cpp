@@ -34,9 +34,26 @@ void CTetrisGame::run()
 		{
 			if (!brick->moveDown())
 			{
+				//砖块落定之后将标志位设置到矩阵中
 				brick->setGameAreaMatrix();
 				delete brick;
 				brick = NULL;
+
+				//砖块落定后检测是否消层
+				this->m_layerCount += this->m_gameArea->tryAndCutLayer();
+
+				//消层后是否过关，刷新
+				if (this->m_layerCount >= this->m_level * KLAYERS_PRE_LEVEL)
+				{
+					//关卡数加1
+					this->m_level++;
+
+					//清空主游戏区域
+					//this->m_gameArea->resetGameArea();
+				}
+
+				//检测当前层高是否造成游戏结束
+				//刷新信息面版，下一块砖预览面版
 
 				brick = createNewBrick(brickIndex);
 				brick->drawBrick();

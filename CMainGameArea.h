@@ -23,6 +23,9 @@ public:
 	void setMatrixStatus(int row, int col, int status);
 
 private:
+	void cutLayer(int row);
+
+private:
 	int m_arrAreaMatrix[KROW][KCOL];
 	int m_offsetx;
 	int m_offsety;

@@ -10,12 +10,21 @@ CMainGameArea::CMainGameArea(int offsetX, int offsetY)
 	m_offsety = offsetY;
 }
 
+void CMainGameArea::cutLayer(int row)
+{
+	int i = row;
+	while (i > 0)
+	{
+		for (int j = 0; j < KCOL; j++)
+		{
+			this->m_arrAreaMatrix[i][j] = this->m_arrAreaMatrix[i - 1][j];
+		}
+		i--;
+	}
+}
+
 void CMainGameArea::drawMatrix()
 {
-	/*this->m_arrAreaMatrix[0][0] = 1;
-	this->m_arrAreaMatrix[0][KCOL-1] = 1;
-	this->m_arrAreaMatrix[KROW-1][0] = 1;
-	this->m_arrAreaMatrix[KROW-1][KCOL-1] = 1;*/
 	for (int i = 0; i < KROW; i++)
 	{
 		CTools::gotoxy(m_offsetx + 1, m_offsety + i);
@@ -54,12 +63,41 @@ void CMainGameArea::drawGameArea()
 
 int CMainGameArea::tryAndCutLayer()
 {
-	return 0;
+	int cutLayers = 0;
+	for (int i = 0; i < KROW; i++)
+	{
+		int unitCount = 0;
+		for (int j = 0; j < KCOL; j++)
+		{
+			unitCount += this->m_arrAreaMatrix[i][j];
+		}
+
+		if (unitCount == KCOL)
+		{
+			//可以消层
+			cutLayer(i);
+
+			cutLayers++;
+
+			//消层完后刷新游戏区域
+			drawMatrix();
+		}
+	}
+
+	return cutLayers;
 }
 
 void CMainGameArea::resetGameArea()
 {
+	for (int i = 0; i < KROW; i++)
+	{
+		for (int j = 0; j < KCOL; j++)
+		{
+			m_arrAreaMatrix[i][j] = 0;
+		}
+	}
 
+	this->drawMatrix();
 }
 
 int CMainGameArea::getOffsetX() const

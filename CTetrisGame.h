@@ -6,6 +6,8 @@
 #include "CNextBrickBoard.h"
 #include "CBrick.h"
 
+#define KLAYERS_PRE_LEVEL 10
+
 class CTetrisGame
 {
 public:
