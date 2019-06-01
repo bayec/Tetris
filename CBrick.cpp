@@ -31,6 +31,15 @@ void CBrick::drawBrick()
 
 bool CBrick::moveLeft()
 {
+	//实现左边界控制
+	for (int i = 0; i < KBRICK_UINT_COUNT; i++)
+	{
+		if (this->m_arrBrickUnit[i].m_x - 1 < this->m_gameArea->getOffsetX() + 1)
+		{
+			return false;
+		}
+	}
+
 	//擦除原来的砖块
 	eraseBrick();
 
@@ -45,6 +54,15 @@ bool CBrick::moveLeft()
 
 bool CBrick::moveRight()
 {
+	//实现右边界控制
+	for (int i = 0; i < KBRICK_UINT_COUNT; i++)
+	{
+		if (this->m_arrBrickUnit[i].m_x + 1 > this->m_gameArea->getOffsetX() + KCOL)
+		{
+			return false;
+		}
+	}
+
 	//擦除原来的砖块
 	eraseBrick();
 
@@ -59,6 +77,7 @@ bool CBrick::moveRight()
 
 bool CBrick::moveDown()
 {
+	//实现下边界控制
 	for (int i = 0; i < KBRICK_UINT_COUNT; i++)
 	{
 		//纵向偏移量加上游戏区域的行数
