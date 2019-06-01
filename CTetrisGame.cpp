@@ -155,8 +155,6 @@ CBrick* CTetrisGame::createNewBrick(int& brickIndex)
 		return new CBrickStyle6(m_gameArea);
 	case 6:
 		return new CBrickStyle7(m_gameArea);
-	default:
-		break;
 	}
 
 	return NULL;

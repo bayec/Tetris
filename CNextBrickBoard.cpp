@@ -12,13 +12,10 @@ CNextBrickBoard::CNextBrickBoard(int offsetX, int offsetY)
 
 void CNextBrickBoard::eraseBoard()
 {
-	for (int i = 0; i < 4; i++)
+	for (int i = 1; i < 3; i++)
 	{
 		CTools::gotoxy(m_offsetX, m_offsetY + i);
-		for (int j = 0; j < 20; j++)
-		{
-			cout << " ";
-		}
+		cout << "                ";
 	}
 }
 
@@ -63,11 +60,13 @@ void CNextBrickBoard::drawNextBrickBoard(int brickIndex)
 		cout << "**";
 		CTools::gotoxy(m_offsetX + 8, m_offsetY + 2);
 		cout << " **";
+		break;
 	case 6:
 		CTools::gotoxy(m_offsetX + 8, m_offsetY + 1);
 		cout << " **";
 		CTools::gotoxy(m_offsetX + 8, m_offsetY + 2);
 		cout << "**";
+		break;
 	default:
 		break;
 	}
