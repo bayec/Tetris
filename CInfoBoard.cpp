@@ -15,9 +15,9 @@ void CInfoBoard::drawInfoBoard(int needLayers, int curLayers)
 	CTools::gotoxy(m_offsetX, m_offsetY);
 	cout << "-----------------------------";
 	CTools::gotoxy(m_offsetX, m_offsetY + 1);
-	cout << "          NEED: 8";
+	cout << "          NEED: " << needLayers << "      ";
 	CTools::gotoxy(m_offsetX, m_offsetY + 2);
-	cout << "          NOW : 6";
+	cout << "          NOW : " << curLayers << "      ";
 	CTools::gotoxy(m_offsetX, m_offsetY + 3);
 	cout << "-----------------------------";
 }

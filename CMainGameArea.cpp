@@ -23,6 +23,20 @@ void CMainGameArea::cutLayer(int row)
 	}
 }
 
+bool CMainGameArea::gameOver()
+{
+	bool flag = false;
+	for (int i = 0; i < KCOL; i++)
+	{
+		if (this->m_arrAreaMatrix[1][i] == 1)
+		{
+			flag = true;
+		}
+	}
+
+	return flag;
+}
+
 void CMainGameArea::drawMatrix()
 {
 	for (int i = 0; i < KROW; i++)

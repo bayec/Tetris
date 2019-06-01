@@ -25,6 +25,7 @@ private:
 	int m_speed;
 	int m_level;
 	int m_layerCount;
+	int m_nextBrickIndex;
 };
 
 #endif

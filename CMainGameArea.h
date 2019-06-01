@@ -15,6 +15,7 @@ public:
 	//尝试消层，返回值为消掉的层数
 	int tryAndCutLayer();
 	void resetGameArea();
+	bool gameOver();
 
 	int getOffsetX() const;
 	int getOffsetY() const;

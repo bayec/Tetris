@@ -10,8 +10,22 @@ CNextBrickBoard::CNextBrickBoard(int offsetX, int offsetY)
 	m_offsetY = offsetY;
 }
 
+void CNextBrickBoard::eraseBoard()
+{
+	for (int i = 0; i < 4; i++)
+	{
+		CTools::gotoxy(m_offsetX, m_offsetY + i);
+		for (int j = 0; j < 20; j++)
+		{
+			cout << " ";
+		}
+	}
+}
+
 void CNextBrickBoard::drawNextBrickBoard(int brickIndex)
 {
+	eraseBoard();
+
 	CTools::gotoxy(m_offsetX, m_offsetY);
 	cout << "--------------------";
 	switch (brickIndex)

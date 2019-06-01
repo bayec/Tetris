@@ -8,6 +8,9 @@ public:
 	void drawNextBrickBoard(int brickIndex);
 
 private:
+	void eraseBoard();
+
+private:
 	int m_offsetX;
 	int m_offsetY;
 };

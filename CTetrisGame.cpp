@@ -2,7 +2,10 @@
 #include <stdlib.h>
 #include <Windows.h>
 #include <conio.h>
+#include <iostream>
+#include <stdio.h>
 #include "CTetrisGame.h"
+#include "CTools.h"
 #include "CBrickStyle1.h"
 #include "CBrickStyle2.h"
 #include "CBrickStyle3.h"
@@ -10,27 +13,31 @@
 #include "CBrickStyle5.h"
 #include "CBrickStyle6.h"
 #include "CBrickStyle7.h"
-#include <stdio.h>
+
+using namespace std;
 
 CTetrisGame::CTetrisGame()
 {
 	this->m_layerCount = 0;
-	this->m_speed = 600;
+	this->m_speed = 300;
 	this->m_level = 1;
+	this->m_nextBrickIndex = -1;
 
 	this->setGameArea();
 }
 
 void CTetrisGame::run()
 {
+	bool pauseFlag = false;
 	char key = 0;
 	int brickIndex = 0;
 	CBrick* brick = createNewBrick(brickIndex);
 	brick->drawBrick();
+	this->m_nextBrickBoard->drawNextBrickBoard(this->m_nextBrickIndex);
 
 	while (key != 0x1b)
 	{
-		while (!_kbhit())
+		while (!_kbhit() && !pauseFlag)
 		{
 			if (!brick->moveDown())
 			{
@@ -53,10 +60,23 @@ void CTetrisGame::run()
 				}
 
 				//检测当前层高是否造成游戏结束
-				//刷新信息面版，下一块砖预览面版
+				if (this->m_gameArea->gameOver())
+				{
+					system("cls");
+					CTools::gotoxy(40, 10);
+					cout << "Game Over!!!" << endl;
+					return;
+				}
 
+				//刷新信息面版
+				this->m_infoBoard->drawInfoBoard(this->m_level * KLAYERS_PRE_LEVEL, this->m_layerCount);
+
+				//产生下一块砖
 				brick = createNewBrick(brickIndex);
 				brick->drawBrick();
+
+				//刷新下一块砖预览面版
+				this->m_nextBrickBoard->drawNextBrickBoard(this->m_nextBrickIndex);
 			}
 			Sleep(this->m_speed);
 		}
@@ -80,6 +100,10 @@ void CTetrisGame::run()
 		case 'd':
 			brick->moveRight();
 			break;
+		//暂停或者恢复
+		case ' ':
+			pauseFlag = !pauseFlag;
+			break;
 		default:
 			break;
 		}
@@ -92,7 +116,7 @@ void CTetrisGame::setGameArea()
 	this->m_gameArea->drawGameArea();
 
 	this->m_infoBoard = new CInfoBoard(15, 13);
-	this->m_infoBoard->drawInfoBoard(8, 0);
+	this->m_infoBoard->drawInfoBoard(this->m_level * KLAYERS_PRE_LEVEL, this->m_layerCount);
 
 	this->m_nextBrickBoard = new CNextBrickBoard(15, 4);
 	this->m_nextBrickBoard->drawNextBrickBoard(0);
@@ -101,7 +125,19 @@ void CTetrisGame::setGameArea()
 CBrick* CTetrisGame::createNewBrick(int& brickIndex)
 {
 	srand((unsigned int)time(NULL));
-	brickIndex = rand() % 7;
+	if (this->m_nextBrickIndex == -1)
+	{
+		//游戏刚开始
+		brickIndex = rand() % 7;
+
+		this->m_nextBrickIndex = rand() % 7;
+	}
+	else
+	{
+		//当前砖块落定，生成下一块砖
+		brickIndex = this->m_nextBrickIndex;
+		this->m_nextBrickIndex = rand() % 7;
+	}
 
 	switch (brickIndex)
 	{
