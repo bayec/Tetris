@@ -18,6 +18,8 @@ public:
 	bool moveRight();
 	bool moveDown();
 
+	void setGameAreaMatrix();
+
 protected:
 	CBrickUnit m_arrBrickUnit[KBRICK_UINT_COUNT];
 	int m_status;

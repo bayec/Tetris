@@ -38,6 +38,14 @@ bool CBrick::moveLeft()
 		{
 			return false;
 		}
+
+		//×ó±ß½ç×©¿éÅö×²
+		int x = this->m_arrBrickUnit[i].m_x - 1 - m_gameArea->getOffsetX() - 1;
+		int y = this->m_arrBrickUnit[i].m_y - m_gameArea->getOffsetY();
+		if (this->m_gameArea->getMatrixStatus(y, x) == 1)
+		{
+			return false;
+		}
 	}
 
 	//²Á³ýÔ­À´µÄ×©¿é
@@ -58,6 +66,14 @@ bool CBrick::moveRight()
 	for (int i = 0; i < KBRICK_UINT_COUNT; i++)
 	{
 		if (this->m_arrBrickUnit[i].m_x + 1 > this->m_gameArea->getOffsetX() + KCOL)
+		{
+			return false;
+		}
+
+		//ÓÒ±ß½ç×©¿éÅö×²
+		int x = this->m_arrBrickUnit[i].m_x - m_gameArea->getOffsetX();
+		int y = this->m_arrBrickUnit[i].m_y - m_gameArea->getOffsetY();
+		if (this->m_gameArea->getMatrixStatus(y, x) == 1)
 		{
 			return false;
 		}
@@ -85,6 +101,14 @@ bool CBrick::moveDown()
 		{
 			return false;
 		}
+
+		//ÏÂ±ß½ç×©¿éÅö×²
+		int x = this->m_arrBrickUnit[i].m_x - 1 - m_gameArea->getOffsetX();
+		int y = this->m_arrBrickUnit[i].m_y - m_gameArea->getOffsetY() + 1;
+		if (this->m_gameArea->getMatrixStatus(y, x) == 1)
+		{
+			return false;
+		}
 	}
 
 	//²Á³ýÔ­À´µÄ×©¿é
@@ -98,4 +122,14 @@ bool CBrick::moveDown()
 	drawBrick();
 
 	return true;
+}
+
+void CBrick::setGameAreaMatrix()
+{
+	for (int i = 0; i < KBRICK_UINT_COUNT; i++)
+	{
+		int x = this->m_arrBrickUnit[i].m_x - 1 - m_gameArea->getOffsetX();
+		int y = this->m_arrBrickUnit[i].m_y - m_gameArea->getOffsetY();
+		this->m_gameArea->setMatrixStatus(y, x, 1);
+	}
 }

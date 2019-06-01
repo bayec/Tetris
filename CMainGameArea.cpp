@@ -10,6 +10,29 @@ CMainGameArea::CMainGameArea(int offsetX, int offsetY)
 	m_offsety = offsetY;
 }
 
+void CMainGameArea::drawMatrix()
+{
+	/*this->m_arrAreaMatrix[0][0] = 1;
+	this->m_arrAreaMatrix[0][KCOL-1] = 1;
+	this->m_arrAreaMatrix[KROW-1][0] = 1;
+	this->m_arrAreaMatrix[KROW-1][KCOL-1] = 1;*/
+	for (int i = 0; i < KROW; i++)
+	{
+		CTools::gotoxy(m_offsetx + 1, m_offsety + i);
+		for (int j = 0; j < KCOL; j++)
+		{
+			if (this->m_arrAreaMatrix[i][j] == 1)
+			{
+				cout << "*";
+			}
+			else
+			{
+				cout << " ";
+			}
+		}
+	}
+}
+
 void CMainGameArea::drawGameArea()
 {
 	for (int i = 0; i < KROW; i++)

@@ -10,5 +10,7 @@ int main()
 	CTetrisGame* game = new CTetrisGame();
 	game->run();
 
+	getchar();
+
 	return 0;
 }

@@ -10,6 +10,7 @@
 #include "CBrickStyle5.h"
 #include "CBrickStyle6.h"
 #include "CBrickStyle7.h"
+#include <stdio.h>
 
 CTetrisGame::CTetrisGame()
 {
@@ -31,10 +32,16 @@ void CTetrisGame::run()
 	{
 		while (!_kbhit())
 		{
-			if (brick->moveDown())
+			if (!brick->moveDown())
 			{
-				Sleep(this->m_speed);
+				brick->setGameAreaMatrix();
+				delete brick;
+				brick = NULL;
+
+				brick = createNewBrick(brickIndex);
+				brick->drawBrick();
 			}
+			Sleep(this->m_speed);
 		}
 
 		key = _getch();

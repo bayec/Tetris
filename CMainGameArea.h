@@ -10,6 +10,9 @@ public:
 	CMainGameArea(int offsetX = 0, int offsetY = 0);
 	void drawGameArea();
 
+	void drawMatrix();
+
+	//尝试消层，返回值为消掉的层数
 	int tryAndCutLayer();
 	void resetGameArea();
 
