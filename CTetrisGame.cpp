@@ -1,6 +1,7 @@
 #include <time.h>
 #include <stdlib.h>
 #include <Windows.h>
+#include <conio.h>
 #include "CTetrisGame.h"
 #include "CBrickStyle1.h"
 #include "CBrickStyle2.h"
@@ -21,15 +22,42 @@ CTetrisGame::CTetrisGame()
 
 void CTetrisGame::run()
 {
+	char key = 0;
 	int brickIndex = 0;
 	CBrick* brick = createNewBrick(brickIndex);
 	brick->drawBrick();
 
-	while (true)
+	while (key != 0x1b)
 	{
-		if (brick->moveDown())
+		while (!_kbhit())
 		{
-			Sleep(this->m_speed);
+			if (brick->moveDown())
+			{
+				Sleep(this->m_speed);
+			}
+		}
+
+		key = _getch();
+		switch (key)
+		{
+		//变形
+		case 'w':
+			brick->rotate();
+			break;
+		//向下
+		case 's':
+			brick->moveDown();
+			break;
+		//向左
+		case 'a':
+			brick->moveLeft();
+			break;
+		//向右
+		case 'd':
+			brick->moveRight();
+			break;
+		default:
+			break;
 		}
 	}
 }
